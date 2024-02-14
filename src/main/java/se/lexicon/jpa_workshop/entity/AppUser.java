@@ -14,7 +14,7 @@ public class AppUser{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int appuserId;
+    private int appUserId;
 
         @Column(unique = true)
         private String email;
@@ -22,4 +22,13 @@ public class AppUser{
         private String name;
 
         private LocalDate birthDate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Details details;
+
+    public AppUser(String email, String name, LocalDate birthDate) {
+        this.email = email;
+        this.name = name;
+        this.birthDate = birthDate;
+    }
 }

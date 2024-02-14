@@ -20,8 +20,13 @@ public class Details{
     private String username;
 
     private String password;
+
     private LocalDate regDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Details details;
+
+    public Details(String username, String password) {
+        this.username = username;
+        this.password = password;
+        regDate = LocalDate.now();
+    }
 }
