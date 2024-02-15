@@ -30,8 +30,10 @@ public class AppUserDAO implements IDAOBase<Integer, AppUser> {
 
     @Override
     @Transactional
-    public void create(AppUser create) {
+    public AppUser create(AppUser create) {
+
         entityManager.persist(create);
+        return create;
     }
 
     @Override

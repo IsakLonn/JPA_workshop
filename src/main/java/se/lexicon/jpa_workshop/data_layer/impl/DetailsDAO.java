@@ -29,8 +29,9 @@ public class DetailsDAO implements IDAOBase<Integer, Details> {
 
     @Override
     @Transactional
-    public void create(Details details) {
+    public Details create(Details details) {
         entityManager.persist(details);
+        return details;
     }
 
     @Override

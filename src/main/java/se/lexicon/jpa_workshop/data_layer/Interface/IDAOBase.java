@@ -8,7 +8,7 @@ public interface IDAOBase <ID, TYPE>{
 
     Collection<TYPE> findAll();
 
-    void create(TYPE create);
+    TYPE create(TYPE create);
 
     TYPE update(TYPE update);
 

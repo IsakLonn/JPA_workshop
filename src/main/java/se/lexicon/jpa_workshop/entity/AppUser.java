@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Table(name = "AppUser")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class AppUser{
 
     @Id
@@ -17,18 +18,18 @@ public class AppUser{
     private int appUserId;
 
         @Column(unique = true)
-        private String email;
+        private String username;
 
-        private String name;
+        private String password;
 
-        private LocalDate birthDate;
+        private LocalDate regDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Details details;
 
-    public AppUser(String email, String name, LocalDate birthDate) {
-        this.email = email;
-        this.name = name;
-        this.birthDate = birthDate;
+    public AppUser(String username, String password) {
+        this.username = username;
+        this.password = password;
+        regDate = LocalDate.now();
     }
 }

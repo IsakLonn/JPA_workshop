@@ -1,4 +1,4 @@
-package data_layer;
+package se.lexicon.jpa_workshop.data_layer;
 
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -9,6 +9,8 @@ import se.lexicon.jpa_workshop.data_layer.impl.DetailsDAO;
 import se.lexicon.jpa_workshop.entity.AppUser;
 import se.lexicon.jpa_workshop.entity.Details;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
@@ -16,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class DetailsDAOTest {
 
-
+    @Autowired
     DetailsDAO detailsDAO;
 
     @Test
@@ -24,11 +26,12 @@ public class DetailsDAOTest {
     {
 
 
-        Details details = new Details("Test", "User");
+        Details details = new Details("Test", "User", LocalDate.now());
 
-        detailsDAO.create(details);
-
-        assertNotNull(details);
+        details = detailsDAO.create(details);
+        int notExpected = 0;
+        int actual = details.getDetailsId();
+        assertNotEquals(notExpected, actual, "Test");
     }
 
 }
