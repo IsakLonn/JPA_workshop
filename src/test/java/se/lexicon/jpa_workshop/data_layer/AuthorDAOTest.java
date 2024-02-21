@@ -30,7 +30,8 @@ public class AuthorDAOTest {
         Book book = new Book("195064", "Book of books", 7);
         Book book2 = new Book("19506432", "Book of books", 7);
 
-
+        book = bDAO.create(book);
+        book2 = bDAO.create(book2);
         author.addBook(book);
         author.addBook(book2);
 

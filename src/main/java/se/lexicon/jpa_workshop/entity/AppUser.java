@@ -25,6 +25,7 @@ public class AppUser{
         private LocalDate regDate;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Details_id")
     private Details details;
 
 

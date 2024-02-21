@@ -23,7 +23,7 @@ public class Book {
     private String title;
     private int maxLoanDays;
 
-    @ManyToMany(mappedBy = "writtenBooks", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "writtenBooks")
     private Set<Author> authors = new HashSet<>();
 
 

@@ -37,7 +37,8 @@ public class Author {
     }
 
     public void addBook(Book book){
-        writtenBooks.add(book);
         book.addAuthor(this);
+        writtenBooks.add(book);
+
     }
 }
