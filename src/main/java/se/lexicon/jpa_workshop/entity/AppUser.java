@@ -26,10 +26,7 @@ public class AppUser{
 
     @OneToOne(cascade = CascadeType.ALL)
     private Details details;
-    /*@OneToMany(mappedBy = "borrower")
-    private List<BookLoan> bookLoans;
 
-*/
 
     public AppUser(String username, String password) {
         this.username = username;

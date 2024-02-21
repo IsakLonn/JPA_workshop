@@ -1,10 +1,10 @@
 package se.lexicon.jpa_workshop.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Book")
@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString(exclude = "authors")
 public class Book {
 
     @Id
@@ -22,13 +23,18 @@ public class Book {
     private String title;
     private int maxLoanDays;
 
-    /*@ManyToOne
+    @ManyToMany(mappedBy = "writtenBooks", cascade = CascadeType.ALL)
+    private Set<Author> authors = new HashSet<>();
 
 
-*/
+
     public Book(String isbn, String title, int maxLoanDays) {
         this.isbn = isbn;
         this.title = title;
         this.maxLoanDays = maxLoanDays;
+    }
+
+    public void addAuthor(Author author){
+        authors.add(author);
     }
 }
