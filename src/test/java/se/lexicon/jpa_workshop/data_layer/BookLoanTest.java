@@ -25,7 +25,7 @@ public class BookLoanTest {
     public void TestBookLoan(){
         AppUser borrower = new AppUser("Test", "Test");
         Book book = new Book("195064", "Book of books", 7);
-        BookLoan loan = new BookLoan(LocalDate.of(2024,4,1), borrower,book);
+        BookLoan loan = new BookLoan(LocalDate.of(2024,4,1));
         DAO.create(loan);
 
         for (BookLoan bl : DAO.findAll()){

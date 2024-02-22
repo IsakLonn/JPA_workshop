@@ -37,4 +37,6 @@ public class Book {
     public void addAuthor(Author author){
         authors.add(author);
     }
+
+    public void removeAuthor(Author author){authors.remove(author);}
 }

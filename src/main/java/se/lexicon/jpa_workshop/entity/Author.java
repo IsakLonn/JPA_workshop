@@ -41,4 +41,9 @@ public class Author {
         writtenBooks.add(book);
 
     }
+
+    public void removeBook(Book book){
+        book.removeAuthor(this);
+        writtenBooks.remove(book);
+    }
 }

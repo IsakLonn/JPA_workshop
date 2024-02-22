@@ -1,9 +1,7 @@
 package se.lexicon.jpa_workshop.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -12,6 +10,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
+@ToString(exclude = "borrower")
 public class BookLoan {
 
     @Id
@@ -22,17 +22,15 @@ public class BookLoan {
     private LocalDate dueDate;
     private boolean returned;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     private AppUser borrower;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     private Book book;
 
-    public BookLoan(LocalDate dueDate, AppUser borrower, Book book) {
+    public BookLoan(LocalDate dueDate) {
         loanDate = LocalDate.now();
         this.dueDate = dueDate;
         returned = false;
-        this.borrower = borrower;
-        this.book = book;
     }
 }
