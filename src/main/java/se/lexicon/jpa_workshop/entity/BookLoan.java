@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "BookLoan")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -30,7 +31,11 @@ public class BookLoan {
 
     public BookLoan(LocalDate dueDate) {
         loanDate = LocalDate.now();
-        this.dueDate = dueDate;
+        this.dueDate = calculateDueDate(book.getMaxLoanDays());
         returned = false;
     }
+    private LocalDate calculateDueDate(int maxLoanDays){
+        return loanDate.plusDays(maxLoanDays);
+    }
+
 }

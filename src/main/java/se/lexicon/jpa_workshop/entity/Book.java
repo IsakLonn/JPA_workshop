@@ -3,11 +3,14 @@ package se.lexicon.jpa_workshop.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "Book")
+@Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -22,6 +25,8 @@ public class Book {
     private String isbn;
     private String title;
     private int maxLoanDays;
+    @Builder.Default
+    private boolean available = true;
 
     @ManyToMany(mappedBy = "writtenBooks")
     private Set<Author> authors = new HashSet<>();
@@ -39,4 +44,21 @@ public class Book {
     }
 
     public void removeAuthor(Author author){authors.remove(author);}
+    void addLoan(AppUser borrower){
+        if (available){
+            available=false;
+            BookLoan bookLoan = BookLoan.builder()
+                    .book(this)
+                    .borrower(borrower)
+                    .build();
+        }
+        else {
+            throw new IllegalArgumentException("Book is already borrowed");
+        }
+    }
+    void removeLoan(){
+        available=true;
+    }
 }
+
+
